@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.util.Scanner;
 public class Main {
@@ -12,7 +13,8 @@ public class Main {
             System.out.println("3. Perform file operations");
             System.out.println("4. Create a Watch Service");
             System.out.println("5. Write Employee Payroll to File");
-            System.out.println("6. Exit");
+            System.out.println("6. Print all employee payroll details from the file");
+            System.out.println("7. Exit");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -40,10 +42,15 @@ public class Main {
                 case 4:
                     payrollService.watchDirectory("testDirectory");
                     break;
+                //UC4
                 case 5:
                     payrollService.writeEmployeeToFile();
                     break;
+                //UC5
                 case 6:
+                    payrollService.printEmployeePayrolls();
+                    break;
+                case 7:
                     System.out.println("Exiting Employee Payroll Service.");
                     scanner.close();
                     return;
@@ -53,4 +60,5 @@ public class Main {
             }
         }
     }
+
 }
