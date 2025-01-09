@@ -88,6 +88,28 @@ public class EmployeePayrollService {
             e.printStackTrace();
         }
     }
+    public void printEmployeePayrolls() {
+        File file = new File(PAYROLL_FILE_NAME);
+
+        if (!file.exists()) {
+            System.out.println("Payroll file does not exist.");
+            return;
+        }
+
+        try (
+                BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            int count = 0;
+            System.out.println("Employee Payrolls:");
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+                count++;
+            }
+            System.out.println("Total Entries: " + count);
+        } catch (IOException e) {
+            System.out.println("Error reading payroll file: " + e.getMessage());
+        }
+    }
 
 
 
