@@ -14,7 +14,8 @@ public class Main {
             System.out.println("4. Create a Watch Service");
             System.out.println("5. Write Employee Payroll to File");
             System.out.println("6. Print all employee payroll details from the file");
-            System.out.println("7. Exit");
+            System.out.println("7. Analyze the Employee Payroll");
+            System.out.println("8. Exit");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -50,7 +51,11 @@ public class Main {
                 case 6:
                     payrollService.printEmployeePayrolls();
                     break;
+                //UC6
                 case 7:
+                    payrollService.analyzeEmployeePayroll();
+                    break;
+                case 8:
                     System.out.println("Exiting Employee Payroll Service.");
                     scanner.close();
                     return;

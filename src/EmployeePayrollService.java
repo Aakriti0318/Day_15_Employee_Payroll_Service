@@ -7,7 +7,7 @@ import static java.nio.file.StandardWatchEventKinds.*;
 public class EmployeePayrollService {
     private static final String PAYROLL_FILE_NAME = "employeePayroll.txt";
 
-    private static final String File_Path="C:\\Users\\taakr\\IdeaProjects\\Day15_Employee_Payroll_sol\\src\\employeePayroll.txt";
+    private static final String File_Path = "C:\\Users\\taakr\\IdeaProjects\\Day15_Employee_Payroll_sol\\src\\employeePayroll.txt";
     private List<EmployeePayroll> employeeList = new ArrayList<>();
 
     // Method to add an employee
@@ -23,12 +23,13 @@ public class EmployeePayrollService {
             System.out.println(employee);
         }
     }
+
     public void performFileOperations() throws IOException {
         File file = new File(PAYROLL_FILE_NAME);
-        File filePath=new File(File_Path);
+        File filePath = new File(File_Path);
         // Check if file exists
         if (file.exists()) {
-            System.out.println("File exists."+filePath);
+            System.out.println("File exists." + filePath);
             // Delete file
             if (file.delete()) {
                 System.out.println("File deleted successfully.");
@@ -56,6 +57,7 @@ public class EmployeePayrollService {
             System.out.println(fileName);
         }
     }
+
     //UC3
     public void watchDirectory(String directoryPath) throws IOException, InterruptedException {
         Path path = Paths.get(directoryPath);
@@ -76,6 +78,7 @@ public class EmployeePayrollService {
             if (!key.reset()) break; // Exit if the watch key is invalid
         }
     }
+
     // UC 4: Write Employee Payroll to File
     public void writeEmployeeToFile() {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(PAYROLL_FILE_NAME))) {
@@ -88,6 +91,7 @@ public class EmployeePayrollService {
             e.printStackTrace();
         }
     }
+
     public void printEmployeePayrolls() {
         File file = new File(PAYROLL_FILE_NAME);
 
@@ -111,6 +115,44 @@ public class EmployeePayrollService {
         }
     }
 
+    static class Employee {
+        String id;
+        String name;
+        double salary;
+
+        Employee(String id, String name, double salary) {
+            this.id = id;
+            this.name = name;
+            this.salary = salary;
+        }
+    }
+
+    // Read the payroll file and perform analysis
+    public void analyzeEmployeePayroll() {
+        File file = new File(PAYROLL_FILE_NAME);
+
+        if (!file.exists()) {
+            System.out.println("Payroll file does not exist.");
+            return;
+        }
+        List<Employee> employees = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 3) {
+                    String id = parts[0];
+                    String name = parts[1];
+                    double salary = Double.parseDouble(parts[2]);
+                    employees.add(new Employee(id, name, salary));
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error reading payroll file: " + e.getMessage());
+            return;
 
 
+        }
+    }
 }
