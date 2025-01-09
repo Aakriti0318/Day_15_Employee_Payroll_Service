@@ -41,6 +41,9 @@ public class Main {
                     payrollService.watchDirectory("testDirectory");
                     break;
                 case 5:
+                    payrollService.writeEmployeeToFile();
+                    break;
+                case 6:
                     System.out.println("Exiting Employee Payroll Service.");
                     scanner.close();
                     return;
