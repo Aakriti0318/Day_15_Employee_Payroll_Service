@@ -7,14 +7,17 @@ public class Main {
 
         while (true) {
             System.out.println("\nEmployee Payroll Service Menu:");
-            System.out.println("1. Add Employee");
-            System.out.println("2. Display Employees");
-            System.out.println("3. Exit");
+            System.out.println("1. Add Employee details");
+            System.out.println("2. Write the Employees details");
+            System.out.println("3. Perform file operations");
+            System.out.println("4. Create a Watch Service");
+            System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
+                //UC1
                 case 1:
                     System.out.print("Enter Employee ID: ");
                     int id = scanner.nextInt();
@@ -28,7 +31,15 @@ public class Main {
                 case 2:
                     payrollService.writeEmployeeToConsole();
                     break;
+                //UC2
                 case 3:
+                    payrollService.performFileOperations();
+                    break;
+                //UC3
+                case 4:
+                    payrollService.watchDirectory("testDirectory");
+                    break;
+                case 5:
                     System.out.println("Exiting Employee Payroll Service.");
                     scanner.close();
                     return;
