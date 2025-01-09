@@ -76,5 +76,19 @@ public class EmployeePayrollService {
             if (!key.reset()) break; // Exit if the watch key is invalid
         }
     }
+    // UC 4: Write Employee Payroll to File
+    public void writeEmployeeToFile() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(PAYROLL_FILE_NAME))) {
+            for (EmployeePayroll employee : employeeList) {
+                writer.write(employee.toString());
+                writer.newLine();
+            }
+            System.out.println("Employee Payroll written to file.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }
